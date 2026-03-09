@@ -4,3 +4,4 @@ networkx
 opencv-python
 pillow
 pymupdf
+paddleocr
