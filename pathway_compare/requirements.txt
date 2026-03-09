@@ -1,0 +1,5 @@
+numpy
+pydantic
+networkx
+opencv-python
+pillow
