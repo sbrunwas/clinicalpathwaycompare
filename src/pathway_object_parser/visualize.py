@@ -26,30 +26,33 @@ def draw_overlay(image: np.ndarray, parsed: ParsedObjects) -> np.ndarray:
     """
     overlay = image.copy()
 
+    text_color = (0, 0, 255)
+    shape_color = (60, 220, 60)
+
     for block in parsed.text_blocks:
         x1, y1, x2, y2 = block.bbox
-        cv2.rectangle(overlay, (x1, y1), (x2, y2), (0, 180, 255), 2)
+        cv2.rectangle(overlay, (x1, y1), (x2, y2), text_color, 2)
         cv2.putText(
             overlay,
             block.id,
             (x1, max(20, y1 - 6)),
             cv2.FONT_HERSHEY_SIMPLEX,
             0.5,
-            (0, 180, 255),
+            text_color,
             1,
             cv2.LINE_AA,
         )
 
     for shape in parsed.shapes:
         x1, y1, x2, y2 = shape.bbox
-        cv2.rectangle(overlay, (x1, y1), (x2, y2), (60, 220, 60), 2)
+        cv2.rectangle(overlay, (x1, y1), (x2, y2), shape_color, 2)
         cv2.putText(
             overlay,
             f"{shape.id}:{shape.shape_type}",
             (x1, max(20, y2 - 4)),
             cv2.FONT_HERSHEY_SIMPLEX,
             0.5,
-            (60, 220, 60),
+            shape_color,
             1,
             cv2.LINE_AA,
         )
